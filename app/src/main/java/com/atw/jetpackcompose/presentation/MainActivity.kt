@@ -1,45 +1,44 @@
-package com.atw.jetpackcompose
+package com.atw.jetpackcompose.presentation
 
+import android.content.Context
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.atw.jetpackcompose.ui.theme.JetpackComposeComponentTheme
+import com.atw.jetpackcompose.R
 
 class MainActivity : ComponentActivity() {
+    private var mainViewModel: MainViewModel = MainViewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            SetComposableState()
+            SetComposableState(mainViewModel)
         }
     }
 }
 
 @Composable
-fun SetComposableState() {
-    val textFieldState = remember {
-        mutableStateOf("")
-    }
-    GreetUser(textFieldState)
+fun SetComposableState(mainViewModel: MainViewModel) {
+    GreetUser(mainViewModel)
 }
 
 @Composable
-fun GreetUser(currentValue: MutableState<String>) {
+fun GreetUser(mainViewModel: MainViewModel) {
+    val mContext = LocalContext.current
     Surface(color = Color.White, modifier = Modifier.fillMaxSize()) {
         Column(
             modifier = Modifier
@@ -53,20 +52,30 @@ fun GreetUser(currentValue: MutableState<String>) {
                 color = Color.Black,
                 style = TextStyle(fontSize = 15.sp)
             )
-            OutlinedTextField(
-                value = currentValue.value,
-                modifier = Modifier.padding(0.dp, 5.dp, 0.dp, 0.dp),
-                onValueChange = { currentValue.value = it },
-                label = { Text(stringResource(R.string.enter_your_name)) }
-            )
+            Spacer(modifier = Modifier.height(10.dp))
+            mainViewModel.textFieldState.observeAsState().value?.let {
+                TextField(
+                    value = it,
+                    onValueChange = { mainViewModel.textFieldValueUpdated(it) },
+                    label = { Text(stringResource(R.string.enter_your_name)) }
+                )
+            }
+            Spacer(modifier = Modifier.height(10.dp))
+            Button(
+                onClick = { onClick(mContext, mainViewModel) }) {
+                Text(text = "Submit")
+            }
         }
     }
+}
+
+fun onClick(context: Context, mainViewModel: MainViewModel) {
+    Toast.makeText(context, "Hello ${mainViewModel.textFieldState.value}", Toast.LENGTH_LONG).show()
 }
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     JetpackComposeComponentTheme {
-        SetComposableState()
     }
 }
