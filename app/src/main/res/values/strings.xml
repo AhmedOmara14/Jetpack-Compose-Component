@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Jetpack Compose Component</string>
+    <string name="welcome_user">Welcome User</string>
+    <string name="enter_your_name">Enter Your Name</string>
 </resources>
