@@ -5,33 +5,56 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.atw.jetpackcompose.R
+import com.atw.jetpackcompose.domain.model.Movies
 
 class MainActivity : ComponentActivity() {
-    private var mainViewModel: MainViewModel = MainViewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-           // SetComposableState(mainViewModel = mainViewModel)
-            /*val painter = painterResource(id = R.drawable.office)
-            Box(modifier = Modifier
-                .padding(10.dp)
-                .fillMaxWidth(0.5f)) {
-                ImageCard(
-                    painter = painter,
-                    contentDes = "The Office ( Tv Series )",
-                    title = "The Office"
-                )
-            }*/
+            Column {
+                //List Movies in Row Layout(Recycler Layout)
+                setDataInList()
+                //List Movies in Vertical Layout(Grid Layout)
+                Spacer(modifier = Modifier.height(10.dp))
+                setDataInGrid()
+            }
         }
+
     }
+
+
+}
+
+@Composable
+private fun setDataInList() {
+    val listMovies = ArrayList<Movies>()
+    listMovies.add(Movies(0, R.drawable.office, "The Office", "The Office Season 9"))
+    listMovies.add(Movies(0, R.drawable.office, "The Office", "The Office Season 8"))
+    listMovies.add(Movies(0, R.drawable.office, "The Office", "The Office Season 7"))
+    listMovies.add(Movies(0, R.drawable.office, "The Office", "The Office Season 6"))
+
+    MoviesListLayout(listMovies = listMovies)
+}
+
+@Composable
+private fun setDataInGrid() {
+    val listMovies = ArrayList<Movies>()
+    listMovies.add(Movies(0, R.drawable.office, "The Office", "The Office Season 9"))
+    listMovies.add(Movies(0, R.drawable.office, "The Office", "The Office Season 8"))
+    listMovies.add(Movies(0, R.drawable.office, "The Office", "The Office Season 7"))
+    listMovies.add(Movies(0, R.drawable.office, "The Office", "The Office Season 6"))
+    listMovies.add(Movies(0, R.drawable.office, "The Office", "The Office Season 5"))
+    listMovies.add(Movies(0, R.drawable.office, "The Office", "The Office Season 4"))
+
+    MoviesGridLayout(listMovies = listMovies)
 }
 
 @Composable
