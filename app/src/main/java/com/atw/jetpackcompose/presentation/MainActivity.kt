@@ -19,7 +19,8 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            val painter = painterResource(id = R.drawable.office)
+           // SetComposableState(mainViewModel = mainViewModel)
+            /*val painter = painterResource(id = R.drawable.office)
             Box(modifier = Modifier
                 .padding(10.dp)
                 .fillMaxWidth(0.5f)) {
@@ -28,7 +29,7 @@ class MainActivity : ComponentActivity() {
                     contentDes = "The Office ( Tv Series )",
                     title = "The Office"
                 )
-            }
+            }*/
         }
     }
 }

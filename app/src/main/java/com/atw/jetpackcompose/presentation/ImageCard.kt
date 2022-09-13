@@ -55,7 +55,12 @@ fun ImageCard(
                 horizontalAlignment = Alignment.Start,
                 verticalArrangement = Arrangement.Bottom
             ) {
-                Text(text = title, style = TextStyle(color = Color.White, fontSize = 18.sp))
+                Text(
+                    text = title,
+                    style = TextStyle(
+                        color = Color.White, fontSize = 18.sp
+                    )
+                )
                 Spacer(modifier = Modifier.height(5.dp))
                 Text(text = contentDes, style = TextStyle(color = Color.White, fontSize = 15.sp))
             }

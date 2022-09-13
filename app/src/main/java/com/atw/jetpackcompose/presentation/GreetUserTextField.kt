@@ -12,7 +12,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.atw.jetpackcompose.R
@@ -29,9 +35,24 @@ fun GreetUserTextField(mainViewModel: MainViewModel) {
             verticalArrangement = Arrangement.Center
         ) {
             Text(
-                text = stringResource(R.string.welcome_user),
-                color = Color.Black,
-                style = TextStyle(fontSize = 15.sp)
+                text = buildAnnotatedString {
+                    withStyle(
+                        style = SpanStyle(
+                            color = Color.Black, fontSize = 20.sp,
+                            fontFamily = FontFamily(
+                                Font(R.font.font_bold, FontWeight.Bold)
+                            )
+                        )
+                    ) {
+                        append("W")
+                    }
+                    append("elcome New User")
+                },
+                style = TextStyle(
+                    color = Color.DarkGray, fontSize = 15.sp, fontFamily = FontFamily(
+                        Font(R.font.font_regular, FontWeight.Medium)
+                    )
+                )
             )
             Spacer(modifier = Modifier.height(10.dp))
             mainViewModel.textFieldState.observeAsState().value?.let {
