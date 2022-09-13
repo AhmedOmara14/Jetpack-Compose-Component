@@ -24,7 +24,9 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Scaffold(topBar = {
+
+            //ListView
+            /**Scaffold(topBar = {
                 TopAppBar(
                     title = {
                         Text(text = "ListView",color= Color.White)
@@ -39,7 +41,10 @@ class MainActivity : ComponentActivity() {
                     Spacer(modifier = Modifier.height(10.dp))
                     SetDataInGrid()
                 }
-            }
+            }**/
+
+            //Constrain Layout
+           /** ConstraintLayout()**/
         }
 
     }
