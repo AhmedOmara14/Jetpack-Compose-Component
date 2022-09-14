@@ -7,6 +7,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
@@ -22,6 +24,7 @@ import com.atw.jetpackcompose.R
 import com.atw.jetpackcompose.domain.model.Movies
 import com.atw.jetpackcompose.presentation.animation.DropDown
 import com.atw.jetpackcompose.presentation.animation.ProgressLoading
+import com.atw.jetpackcompose.presentation.animation.ReSizeImage
 import com.atw.jetpackcompose.presentation.animation.ShimmerLoading
 import com.atw.jetpackcompose.presentation.component.GreetUserTextField
 import com.atw.jetpackcompose.presentation.layout.MoviesGridLayout
@@ -61,19 +64,59 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.background(Color(R.color.purple_700))
                 )
             }) {
-                Column {
+                Column(
+                    modifier = Modifier
+                        .verticalScroll(rememberScrollState())
+                ) {
+                    Text(
+                        text = "Shimmer Loading",
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier
+                            .padding(10.dp)
+                            .fillMaxWidth()
+                            .wrapContentSize(),
+                        style = TextStyle(fontSize = 18.sp)
+                    )
                     ShimmerLoading()
-                    /**ProgressBar**/
+                    Text(
+                        text = "Progress Bar",
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier
+                            .padding(10.dp)
+                            .fillMaxWidth()
+                            .wrapContentSize(),
+                        style = TextStyle(fontSize = 18.sp)
+                    )
                     Spacer(modifier = Modifier.height(15.dp))
                     ProgressLoading()
-                    /**DropDown**/
+                    Spacer(modifier = Modifier.height(15.dp))
+                    Text(
+                        text = "ReSizeImage",
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier
+                            .padding(10.dp)
+                            .fillMaxWidth()
+                            .wrapContentSize(),
+                        style = TextStyle(fontSize = 18.sp)
+                    )
+                    ReSizeImage()
+                    Text(
+                        text = "Drop Down",
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier
+                            .padding(10.dp)
+                            .fillMaxWidth()
+                            .wrapContentSize(),
+                        style = TextStyle(fontSize = 18.sp)
+                    )
                     Spacer(modifier = Modifier.height(15.dp))
                     DropDown(
                         title = "Drop Down",
                         modifier = Modifier.padding(15.dp)
                     ) {
                         Text(
-                            text = "Drop Down Animation", style = TextStyle(color = Color.White, fontSize = 18.sp),
+                            text = "Drop Down Animation",
+                            style = TextStyle(color = Color.White, fontSize = 18.sp),
                             textAlign = TextAlign.Center,
                             modifier = Modifier
                                 .fillMaxWidth()

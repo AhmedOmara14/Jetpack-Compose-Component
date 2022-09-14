@@ -70,7 +70,7 @@ fun ShimmerLoading() {
 
         }
         Text(text = "", modifier = Modifier
-            .height(30.dp)
+            .height(50.dp)
             .fillMaxWidth()
             .padding(0.dp,5.dp,10.dp,0.dp)
             .background(brush = brush))
