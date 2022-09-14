@@ -1,4 +1,4 @@
-package com.atw.jetpackcompose.presentation
+package com.atw.jetpackcompose.presentation.component
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
@@ -22,6 +22,8 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.atw.jetpackcompose.R
+import com.atw.jetpackcompose.presentation.MainViewModel
+import com.atw.jetpackcompose.presentation.onClick
 
 @Composable
 fun GreetUserTextField(mainViewModel: MainViewModel) {

@@ -1,4 +1,4 @@
-package com.atw.jetpackcompose.presentation
+package com.atw.jetpackcompose.presentation.layout
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -36,7 +36,9 @@ fun MoviesListLayout(listMovies: List<Movies>) {
                     Image(
                         painter = painterResource(id = movie.movieImage),
                         contentDescription = movie.movieName,
-                        contentScale = ContentScale.FillBounds
+                        contentScale = ContentScale.FillBounds,
+                        modifier = Modifier.height(200.dp)
+                            .width(200.dp)
                     )
                     Box(
                         modifier = Modifier

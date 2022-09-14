@@ -1,4 +1,4 @@
-package com.atw.jetpackcompose.presentation
+package com.atw.jetpackcompose.presentation.layout
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
@@ -25,7 +25,10 @@ import com.atw.jetpackcompose.domain.model.Movies
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun MoviesGridLayout(listMovies: List<Movies>) {
-    LazyVerticalGrid(cells = GridCells.Fixed(2), modifier = Modifier.padding(0.dp,0.dp,0.dp,10.dp)){
+    LazyVerticalGrid(
+        cells = GridCells.Fixed(2),
+        modifier = Modifier.padding(0.dp, 0.dp, 0.dp, 10.dp)
+    ) {
         itemsIndexed(listMovies) { i, movie ->
             Card(
                 shape = RoundedCornerShape(10.dp),
@@ -38,7 +41,9 @@ fun MoviesGridLayout(listMovies: List<Movies>) {
                     Image(
                         painter = painterResource(id = movie.movieImage),
                         contentDescription = movie.movieName,
-                        contentScale = ContentScale.FillBounds
+                        contentScale = ContentScale.FillBounds, modifier = Modifier
+                            .height(200.dp)
+                            .width(200.dp)
                     )
                     Box(
                         modifier = Modifier

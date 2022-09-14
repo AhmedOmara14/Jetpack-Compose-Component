@@ -1,4 +1,4 @@
-package com.atw.jetpackcompose.presentation
+package com.atw.jetpackcompose.presentation.layout
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
