@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.dp
 fun ShimmerLoading() {
     //ShimmerEffect
     val shimmerColors = listOf(
-        Color.Gray.copy(0.5f),
+        Color.Gray.copy(0.8f),
         Color.Gray.copy(0.2f),
         Color.Gray.copy(0.2f)
     )
@@ -72,7 +72,7 @@ fun ShimmerLoading() {
         Text(text = "", modifier = Modifier
             .height(30.dp)
             .fillMaxWidth()
-            .padding(0.dp,5.dp,0.dp,0.dp)
+            .padding(0.dp,5.dp,10.dp,0.dp)
             .background(brush = brush))
     }
 }

@@ -63,7 +63,11 @@ class MainActivity : ComponentActivity() {
             }) {
                 Column {
                     ShimmerLoading()
-                    Spacer(modifier = Modifier.height(10.dp))
+                    /**ProgressBar**/
+                    Spacer(modifier = Modifier.height(15.dp))
+                    ProgressLoading()
+                    /**DropDown**/
+                    Spacer(modifier = Modifier.height(15.dp))
                     DropDown(
                         title = "Drop Down",
                         modifier = Modifier.padding(15.dp)
@@ -80,10 +84,6 @@ class MainActivity : ComponentActivity() {
                                 .wrapContentHeight()
                         )
                     }
-                    Spacer(modifier = Modifier.height(10.dp))
-
-                    ProgressLoading()
-
                 }
             }
 
