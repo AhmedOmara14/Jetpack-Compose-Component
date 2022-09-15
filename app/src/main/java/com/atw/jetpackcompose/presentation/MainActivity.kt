@@ -14,6 +14,7 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
@@ -22,10 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.atw.jetpackcompose.R
 import com.atw.jetpackcompose.domain.model.Movies
-import com.atw.jetpackcompose.presentation.animation.DropDown
-import com.atw.jetpackcompose.presentation.animation.ProgressLoading
-import com.atw.jetpackcompose.presentation.animation.ReSizeImage
-import com.atw.jetpackcompose.presentation.animation.ShimmerLoading
+import com.atw.jetpackcompose.presentation.animation.*
 import com.atw.jetpackcompose.presentation.component.GreetUserTextField
 import com.atw.jetpackcompose.presentation.layout.MoviesGridLayout
 import com.atw.jetpackcompose.presentation.layout.MoviesListLayout
@@ -100,11 +98,22 @@ class MainActivity : ComponentActivity() {
                         style = TextStyle(fontSize = 18.sp)
                     )
                     ReSizeImage()
+                    Spacer(modifier = Modifier.height(15.dp))
+                    Text(
+                        text = "Loading",
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier
+                            .padding(10.dp)
+                            .fillMaxWidth()
+                            .wrapContentSize(),
+                        style = TextStyle(fontSize = 18.sp)
+                    )
+                    Loading()
                     Text(
                         text = "Drop Down",
                         textAlign = TextAlign.Center,
                         modifier = Modifier
-                            .padding(10.dp)
+                            .padding(20.dp)
                             .fillMaxWidth()
                             .wrapContentSize(),
                         style = TextStyle(fontSize = 18.sp)
