@@ -27,6 +27,7 @@ import com.atw.jetpackcompose.presentation.animation.*
 import com.atw.jetpackcompose.presentation.component.GreetUserTextField
 import com.atw.jetpackcompose.presentation.layout.MoviesGridLayout
 import com.atw.jetpackcompose.presentation.layout.MoviesListLayout
+import com.atw.jetpackcompose.presentation.navigation.Navigation
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,7 +55,7 @@ class MainActivity : ComponentActivity() {
             /** ConstraintLayout()**/
 
             //Animation
-            Scaffold(topBar = {
+            /**Scaffold(topBar = {
                 TopAppBar(
                     title = {
                         Text(text = "Animation", color = Color.White)
@@ -137,7 +138,10 @@ class MainActivity : ComponentActivity() {
                         )
                     }
                 }
-            }
+            }**/
+
+            //Navigation
+            Navigation()
 
         }
 
