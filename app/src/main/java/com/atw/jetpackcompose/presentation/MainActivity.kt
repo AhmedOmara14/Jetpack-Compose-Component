@@ -7,56 +7,206 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.MaterialTheme
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Notifications
-import androidx.compose.material.icons.filled.Settings
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.compose.rememberNavController
 import com.atw.jetpackcompose.R
 import com.atw.jetpackcompose.domain.model.Movies
-import com.atw.jetpackcompose.presentation.animation.*
 import com.atw.jetpackcompose.presentation.component.GreetUserTextField
 import com.atw.jetpackcompose.presentation.layout.MoviesGridLayout
-import com.atw.jetpackcompose.presentation.layout.MoviesListLayout
-import com.atw.jetpackcompose.presentation.navigation.Navigation
-import com.atw.jetpackcompose.presentation.widget.navigation.BottomNavigationBar
-import com.atw.jetpackcompose.presentation.widget.navigation.BottomNavigationItem
+import com.atw.jetpackcompose.presentation.layout.MoviesListColumnLayout
+import com.atw.jetpackcompose.presentation.layout.MoviesListRowLayout
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             //ListView
-            /**Scaffold(topBar = {
-            TopAppBar(
-            title = {
-            Text(text = "ListView",color= Color.White)
-            },
-            modifier = Modifier.background(Color(R.color.purple_700))
-            )
+            Scaffold(topBar = {
+                TopAppBar(
+                    title = {
+                        Text(text = "ListView", color = Color.White)
+                    },
+                    modifier = Modifier.background(Color(R.color.purple_700))
+                )
             }) {
-            Column {
-            //List Movies in Row Layout(Recycler Layout)
-            SetDataInList()
-            //List Movies in Vertical Layout(Grid Layout)
-            Spacer(modifier = Modifier.height(10.dp))
-            SetDataInGrid()
+                LazyColumn(modifier = Modifier.fillMaxWidth()) {
+                    item { Spacer(modifier = Modifier.height(10.dp)) }
+                    item {
+                        Text(
+                            text = "Grid Layout",
+                            color = Color.Black,
+                            modifier = Modifier.padding(10.dp,0.dp,0.dp,0.dp),
+                            style = TextStyle(
+                                fontSize = 22.sp,
+                                fontFamily = FontFamily(Font(R.font.font_bold))
+                            )
+                        )
+                    }
+                    item { SetDataInGrid() }
+                    item { Spacer(modifier = Modifier.height(10.dp)) }
+                    item {
+                        Text(
+                            text = "Recycler Layout - Horizontal",
+                            color = Color.Black,
+                            modifier = Modifier.padding(10.dp,0.dp,0.dp,0.dp),
+                            style = TextStyle(
+                                fontSize = 22.sp,
+                                fontFamily = FontFamily(Font(R.font.font_bold))
+                            )
+                        )
+                    }
+                    item { SetDataInList() }
+                    item { Spacer(modifier = Modifier.height(10.dp)) }
+                    item {
+                        Text(
+                            text = "Recycler Layout - Vertical",
+                            color = Color.Black,
+                            modifier = Modifier.padding(10.dp,0.dp,0.dp,0.dp),
+                            style = TextStyle(
+                                fontSize = 22.sp,
+                                fontFamily = FontFamily(Font(R.font.font_bold))
+                            )
+                        )
+                    }
+                    item { SetDataInListColumn() }
+                }
+                /*  Column(
+                      Modifier
+                          .padding(10.dp, 0.dp, 5.dp, 0.dp)
+                          .fillMaxSize()
+                          .verticalScroll(rememberScrollState())
+                  ) {
+                      //List Movies in Row Layout(Recycler Layout)
+                      Spacer(modifier = Modifier.height(10.dp))
+                      Text(
+                          text = "RecyclerLayout - Vertical",
+                          color = Color.Black,
+                          style = TextStyle(
+                              fontSize = 22.sp,
+                              fontFamily = FontFamily(Font(R.font.font_bold))
+                          )
+                      )
+
+
+                      SetDataInList()
+
+                      SetDataInList()
+
+                      SetDataInList()
+
+                      SetDataInList()
+
+                      SetDataInList()
+
+                      SetDataInList()
+
+                      SetDataInList()
+
+                      SetDataInList()
+
+                      SetDataInList()
+
+                      SetDataInList()
+
+                      SetDataInList()
+
+                      SetDataInList()
+
+                      //  SetDataInGrid()
+
+                      Spacer(modifier = Modifier.height(10.dp))
+                      Text(
+                          text = "RecyclerLayout - Vertical",
+                          color = Color.Black,
+                          style = TextStyle(
+                              fontSize = 22.sp,
+                              fontFamily = FontFamily(Font(R.font.font_bold))
+                          )
+                      )
+                      Spacer(modifier = Modifier.height(10.dp))
+                      Text(
+                          text = "RecyclerLayout - Vertical",
+                          color = Color.Black,
+                          style = TextStyle(
+                              fontSize = 22.sp,
+                              fontFamily = FontFamily(Font(R.font.font_bold))
+                          )
+                      )
+                      Spacer(modifier = Modifier.height(10.dp))
+                      Text(
+                          text = "RecyclerLayout - Vertical",
+                          color = Color.Black,
+                          style = TextStyle(
+                              fontSize = 22.sp,
+                              fontFamily = FontFamily(Font(R.font.font_bold))
+                          )
+                      )
+                      Spacer(modifier = Modifier.height(10.dp))
+                      Text(
+                          text = "RecyclerLayout - Vertical",
+                          color = Color.Black,
+                          style = TextStyle(
+                              fontSize = 22.sp,
+                              fontFamily = FontFamily(Font(R.font.font_bold))
+                          )
+                      )
+                      Spacer(modifier = Modifier.height(10.dp))
+                      Text(
+                          text = "RecyclerLayout - Vertical",
+                          color = Color.Black,
+                          style = TextStyle(
+                              fontSize = 22.sp,
+                              fontFamily = FontFamily(Font(R.font.font_bold))
+                          )
+                      )
+                      Spacer(modifier = Modifier.height(10.dp))
+                      Text(
+                          text = "RecyclerLayout - Vertical",
+                          color = Color.Black,
+                          style = TextStyle(
+                              fontSize = 22.sp,
+                              fontFamily = FontFamily(Font(R.font.font_bold))
+                          )
+                      )
+                      Spacer(modifier = Modifier.height(10.dp))
+                      Text(
+                          text = "RecyclerLayout - Vertical",
+                          color = Color.Black,
+                          style = TextStyle(
+                              fontSize = 22.sp,
+                              fontFamily = FontFamily(Font(R.font.font_bold))
+                          )
+                      )
+                      Spacer(modifier = Modifier.height(10.dp))
+                      Text(
+                          text = "RecyclerLayout - Vertical",
+                          color = Color.Black,
+                          style = TextStyle(
+                              fontSize = 22.sp,
+                              fontFamily = FontFamily(Font(R.font.font_bold))
+                          )
+                      )
+                      Spacer(modifier = Modifier.height(10.dp))
+                      Text(
+                          text = "RecyclerLayout - Vertical",
+                          color = Color.Black,
+                          style = TextStyle(
+                              fontSize = 22.sp,
+                              fontFamily = FontFamily(Font(R.font.font_bold))
+                          )
+                      )
+                  }*/
             }
-            }**/
 
             //Constrain Layout
             /** ConstraintLayout()**/
@@ -151,13 +301,21 @@ class MainActivity : ComponentActivity() {
             /** Navigation()**/
 
             //BottomNavigation
-            val navController = rememberNavController()
+            /*val navController = rememberNavController()
             Scaffold(
+                topBar = {
+                    TopAppBar(
+                        title = {
+                            Text(text = "Widget", color = Color.White)
+                        },
+                        modifier = Modifier.background(Color(R.color.purple_700))
+                    )
+                },
                 bottomBar = {
                     BottomNavigationBar(
                         items = listOf(
                             BottomNavigationItem("Home", "home", Icons.Default.Home),
-                            BottomNavigationItem("Chat", "chat", Icons.Default.Notifications,25),
+                            BottomNavigationItem("Chat", "chat", Icons.Default.Notifications, 25),
                             BottomNavigationItem("Setting", "settings", Icons.Default.Settings)
                         ),
                         modifier = Modifier,
@@ -169,7 +327,7 @@ class MainActivity : ComponentActivity() {
                 }
             ) {
                 com.atw.jetpackcompose.presentation.widget.navigation.Navigation(navHostController = navController)
-            }
+            }*/
         }
 
     }
@@ -184,7 +342,7 @@ private fun SetDataInList() {
     listMovies.add(Movies(0, R.drawable.office, "The Office", "The Office Season 7"))
     listMovies.add(Movies(0, R.drawable.office, "The Office", "The Office Season 6"))
 
-    MoviesListLayout(listMovies = listMovies)
+    MoviesListRowLayout(listMovies = listMovies)
 }
 
 @Composable
@@ -198,6 +356,19 @@ private fun SetDataInGrid() {
     listMovies.add(Movies(0, R.drawable.office, "The Office", "The Office Season 4"))
 
     MoviesGridLayout(listMovies = listMovies)
+}
+
+@Composable
+private fun SetDataInListColumn() {
+    val listMovies = ArrayList<Movies>()
+    listMovies.add(Movies(0, R.drawable.office, "The Office", "The Office Season 9"))
+    listMovies.add(Movies(0, R.drawable.office, "The Office", "The Office Season 8"))
+    listMovies.add(Movies(0, R.drawable.office, "The Office", "The Office Season 7"))
+    listMovies.add(Movies(0, R.drawable.office, "The Office", "The Office Season 6"))
+    listMovies.add(Movies(0, R.drawable.office, "The Office", "The Office Season 5"))
+    listMovies.add(Movies(0, R.drawable.office, "The Office", "The Office Season 4"))
+
+    MoviesListColumnLayout(listMovies = listMovies)
 }
 
 @Composable
