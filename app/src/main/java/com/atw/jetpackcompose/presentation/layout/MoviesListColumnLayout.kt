@@ -2,9 +2,11 @@ package com.atw.jetpackcompose.presentation.layout
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -19,9 +21,10 @@ import com.google.accompanist.flowlayout.FlowColumn
 import com.google.accompanist.flowlayout.FlowMainAxisAlignment
 import com.google.accompanist.flowlayout.SizeMode
 
-@OptIn(ExperimentalFoundationApi::class)
+@OptIn(ExperimentalFoundationApi::class, ExperimentalMaterialApi::class)
 @Composable
-fun MoviesListColumnLayout(listMovies: List<Movies>) {
+fun MoviesListColumnLayout( listMovies: List<Movies>) {
+
     Box(
         modifier = Modifier
             .padding(20.dp)
@@ -31,20 +34,20 @@ fun MoviesListColumnLayout(listMovies: List<Movies>) {
             mainAxisSize = SizeMode.Wrap,
             mainAxisAlignment = FlowMainAxisAlignment.SpaceEvenly,
         ) {
-            listMovies.forEachIndexed { _, movie ->
+            listMovies.forEachIndexed { i, movie ->
                 Card(
                     shape = RoundedCornerShape(10.dp),
                     elevation = 5.dp,
-
                     modifier = Modifier
                         .width(LocalConfiguration.current.screenWidthDp.dp / 1)
                         .padding(10.dp)
+
                 ) {
                     Box {
                         Column(
                             modifier = Modifier
                                 .fillMaxSize()
-                                .background(Color.Gray)
+                                .background(color = if (movie.isSelected == true) Color.Black else Color.Gray)
                                 .padding(10.dp),
                             horizontalAlignment = Alignment.Start,
                             verticalArrangement = Arrangement.Bottom

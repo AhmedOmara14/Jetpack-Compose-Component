@@ -5,4 +5,5 @@ data class Movies(
     val movieImage: Int,
     val movieName: String,
     val movieDes: String,
+    var isSelected: Boolean
 )
