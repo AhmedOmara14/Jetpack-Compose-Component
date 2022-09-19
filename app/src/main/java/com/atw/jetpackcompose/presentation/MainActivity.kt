@@ -12,9 +12,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Check
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -26,15 +24,17 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.compose.rememberNavController
 import com.atw.jetpackcompose.R
 import com.atw.jetpackcompose.domain.model.Movies
-import com.atw.jetpackcompose.presentation.component.GreetUserTextField
 import com.atw.jetpackcompose.presentation.layout.MoviesGridLayout
 import com.atw.jetpackcompose.presentation.layout.MoviesListColumnLayout
 import com.atw.jetpackcompose.presentation.layout.MoviesListRowLayout
 import com.atw.jetpackcompose.presentation.navigation_drawer.DrawerBody
 import com.atw.jetpackcompose.presentation.navigation_drawer.DrawerHeader
 import com.atw.jetpackcompose.presentation.navigation_drawer.MenuItem
+import com.atw.jetpackcompose.presentation.widget.navigation.BottomNavigationBar
+import com.atw.jetpackcompose.presentation.widget.navigation.BottomNavigationItem
 import com.atw.jetpackcompose.ui.theme.JetpackComposeComponentTheme
 import com.google.accompanist.flowlayout.FlowColumn
 import com.google.accompanist.flowlayout.FlowMainAxisAlignment
@@ -262,48 +262,13 @@ class MainActivity : ComponentActivity() {
             /** Navigation()**/
 
             //BottomNavigation
-            /**val navController = rememberNavController()
-            Scaffold(
-            topBar = {
-            TopAppBar(
-            title = {
-            Text(text = "Widget", color = Color.White)
-            },
-            modifier = Modifier.background(Color(R.color.purple_700))
-            )
-            },
-            bottomBar = {
-            BottomNavigationBar(
-            items = listOf(
-            BottomNavigationItem("Home", "home", Icons.Default.Home),
-            BottomNavigationItem("Chat", "chat", Icons.Default.Notifications, 25),
-            BottomNavigationItem("Setting", "settings", Icons.Default.Settings)
-            ),
-            modifier = Modifier,
-            navController = navController,
-            onItemClick = {
-            navController.navigate(route = it.route)
-            }
-            )
-            }
-            ) {
-            com.atw.jetpackcompose.presentation.widget.navigation.Navigation(navHostController = navController)
-            }*/
-
-            //Navigation Drawer
+            val navController = rememberNavController()
             val scaffoldState = rememberScaffoldState()
             val scope = rememberCoroutineScope()
             Scaffold(
+
                 scaffoldState = scaffoldState,
-                topBar = {
-                    com.atw.jetpackcompose.presentation.navigation_drawer.AppBar(
-                        onNavigationIconClick = {
-                            scope.launch {
-                                scaffoldState.drawerState.open()
-                            }
-                        }
-                    )
-                },
+
                 drawerContent = {
                     DrawerHeader()
                     DrawerBody(items = listOf(
@@ -312,9 +277,58 @@ class MainActivity : ComponentActivity() {
                     ), onItemClick = {
 
                     })
-                }) {
-
+                }, topBar = {
+                    com.atw.jetpackcompose.presentation.navigation_drawer.AppBar(
+                        onNavigationIconClick = {
+                            scope.launch {
+                                scaffoldState.drawerState.open()
+                            }
+                        }
+                    )
+                },
+                bottomBar = {
+                    BottomNavigationBar(
+                        items = listOf(
+                            BottomNavigationItem("Home", "home", Icons.Default.Home),
+                            BottomNavigationItem("Chat", "chat", Icons.Default.Notifications, 25),
+                            BottomNavigationItem("Setting", "settings", Icons.Default.Settings)
+                        ),
+                        modifier = Modifier,
+                        navController = navController,
+                        onItemClick = {
+                            navController.navigate(route = it.route)
+                        }
+                    )
+                }
+            ) {
+                com.atw.jetpackcompose.presentation.widget.navigation.Navigation(navHostController = navController)
             }
+
+            //Navigation Drawer
+            /**  val scaffoldState = rememberScaffoldState()
+            val scope = rememberCoroutineScope()
+            Scaffold(
+            scaffoldState = scaffoldState,
+            topBar = {
+            com.atw.jetpackcompose.presentation.navigation_drawer.AppBar(
+            onNavigationIconClick = {
+            scope.launch {
+            scaffoldState.drawerState.open()
+            }
+            }
+            )
+            },
+            drawerContent = {
+            DrawerHeader()
+            DrawerBody(items = listOf(
+            MenuItem("Home", "Home", Icons.Default.Menu),
+            MenuItem("Favorite", "Favorite", Icons.Default.Favorite)
+            ), onItemClick = {
+
+            })
+            }) {
+
+            }**/
 
         }
     }
@@ -353,12 +367,5 @@ private fun SetDataInListColumn() {
     MoviesListColumnLayout(listMovies = listMovies)
 }
 
-@Composable
-fun SetComposableState(mainViewModel: MainViewModel) {
-    GreetUserTextField(mainViewModel)
-}
 
-fun onClick(context: Context, mainViewModel: MainViewModel) {
-    Toast.makeText(context, "Hello ${mainViewModel.textFieldState.value}", Toast.LENGTH_LONG)
-        .show()
-}
+

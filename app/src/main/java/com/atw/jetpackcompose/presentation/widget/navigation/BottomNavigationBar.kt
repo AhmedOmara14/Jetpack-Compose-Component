@@ -6,12 +6,13 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
-
+import com.atw.jetpackcompose.R
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun BottomNavigationBar(
@@ -22,7 +23,7 @@ fun BottomNavigationBar(
 ) {
     BottomNavigation(
         modifier = modifier,
-        backgroundColor = Color.Black,
+        backgroundColor = colorResource(id = R.color.purple_700),
         elevation = 5.dp
     ) {
         items.forEach {

@@ -18,7 +18,7 @@ import kotlinx.coroutines.delay
 @Preview
 @Composable
 fun Loading() {
-    val circleSize = 30.dp
+    val circleSize = 25.dp
     val topDistance = 20.dp
     val spaceBetween = 10.dp
     val circleColor = MaterialTheme.colors.primary
