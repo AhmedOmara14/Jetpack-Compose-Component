@@ -22,30 +22,28 @@ import androidx.compose.ui.unit.sp
 import com.atw.jetpackcompose.domain.model.Movies
 import com.google.accompanist.flowlayout.FlowMainAxisAlignment
 import com.google.accompanist.flowlayout.FlowRow
+import com.google.accompanist.flowlayout.MainAxisAlignment
 import com.google.accompanist.flowlayout.SizeMode
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun MoviesGridLayout(listMovies: List<Movies>) {
     Box(modifier = Modifier
-        .padding(5.dp)
         .fillMaxWidth()) {
         FlowRow(
+            mainAxisAlignment = MainAxisAlignment.Center,
             mainAxisSize = SizeMode.Wrap,
-            mainAxisAlignment = FlowMainAxisAlignment.SpaceEvenly,
+            crossAxisSpacing = 3.dp,
+            mainAxisSpacing = 3.dp
         ) {
             listMovies.forEachIndexed { _, movie ->
                 Card(
                     shape = RoundedCornerShape(10.dp),
                     elevation = 5.dp,
                     modifier = Modifier
-                        .padding(5.dp)
-                        .size(190.dp)
+                        .size( ((LocalConfiguration.current.smallestScreenWidthDp.dp)-10.dp) / 2)
                 ) {
                     Box {
-                        Log.d("TAG", "MoviesGridLayout: "+
-                                LocalConfiguration.current.screenWidthDp.dp / 2
-                        )
                         Image(
                             painter = painterResource(id = movie.movieImage),
                             contentDescription = movie.movieName,

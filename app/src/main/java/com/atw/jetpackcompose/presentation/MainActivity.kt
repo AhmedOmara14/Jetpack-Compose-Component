@@ -46,8 +46,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             //ListView
-            /**
-             * Scaffold(topBar = {
+             Scaffold(topBar = {
             TopAppBar(
             title = {
             Text(text = "ListView", color = Color.White)
@@ -167,7 +166,7 @@ class MainActivity : ComponentActivity() {
             }
 
             }
-            }**/
+            }
 
             //Constrain Layout
             /** ConstraintLayout()**/
@@ -262,7 +261,7 @@ class MainActivity : ComponentActivity() {
             /** Navigation()**/
 
             //BottomNavigation
-            val navController = rememberNavController()
+          /**  val navController = rememberNavController()
             val scaffoldState = rememberScaffoldState()
             val scope = rememberCoroutineScope()
             Scaffold(
@@ -302,7 +301,7 @@ class MainActivity : ComponentActivity() {
                 }
             ) {
                 com.atw.jetpackcompose.presentation.widget.navigation.Navigation(navHostController = navController)
-            }
+            }*/
 
             //Navigation Drawer
             /**  val scaffoldState = rememberScaffoldState()

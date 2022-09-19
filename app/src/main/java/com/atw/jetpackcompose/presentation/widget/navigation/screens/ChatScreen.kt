@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.sp
 fun ChatScreen() {
     Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
         Text(
-            text = "Chat Screen", fontSize = 18.sp
+            text = "Notification Screen", fontSize = 18.sp
             , style = TextStyle(color = Color.Black)
         )
     }
